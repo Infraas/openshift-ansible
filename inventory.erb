@@ -434,7 +434,7 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 # make them unschedulable by adding openshift_schedulable=False any node that's also a master.
 [masters]
 <% @vms.select { |vm| vm.tagged_with?("roles", "master") }.each { |vm| %>
-<%= vm.custom_get("hostname") -%> ansible_host=<%= vm.ipaddresses[0] -%> ansible_user=<%= @sshUser %>
+<%= vm.custom_get("hostname") + " ansible_host=" + vm.ipaddresses[0] + " ansible_user=" + @sshUser %>
 <% } %>
 
 [nodes]
