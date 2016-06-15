@@ -6,12 +6,12 @@ masters
 nodes
 etcd
 lb
-nfs
+#nfs
 
 # Set variables common for all OSEv3 hosts
 [OSEv3:vars]
 <% @dialog.each { |key,value| %>
-<%= key.gsub(/dialog_/,'') %>=<%= value %>
+<%= key.gsub(/dialog_/,'').gsub(/^(Array|password):://) %>=<%= value %>
 <% } %>
 
 # SSH user, this user should allow ssh based auth without requiring a
