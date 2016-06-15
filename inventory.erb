@@ -10,9 +10,9 @@ nfs
 
 # Set variables common for all OSEv3 hosts
 [OSEv3:vars]
-<% @dialog.each do |key,value| -%>
+<% @dialog.each { |key,value| %>
 <%= key %>=<%= value %>
-<% end -%>
+<% } %>
 
 # SSH user, this user should allow ssh based auth without requiring a
 # password. If using ssh key based auth, then the key should be managed by an
