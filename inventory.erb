@@ -10,9 +10,6 @@ lb
 
 # Set variables common for all OSEv3 hosts
 [OSEv3:vars]
-<% @dialog.each { |key,value| %>
-<%= key.gsub(/^(.*::)?dialog_/,'') %>=<%= value %>
-<% } %>
 
 # SSH user, this user should allow ssh based auth without requiring a
 # password. If using ssh key based auth, then the key should be managed by an
@@ -418,6 +415,13 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 
 # Configure usage of openshift_clock role.
 #openshift_clock_enabled=true
+
+
+<% @dialog.each { |key,value| 
+   next if value == nil || value.to_s.empty?
+   value = 'true' if value.to_s == 't'               %>
+<%= key.gsub(/^(.*::)?dialog_/,'') %>=<%= value.to_s %>
+<% } %>
 
 # host group for masters
 #[masters]
