@@ -419,7 +419,8 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 
 <% @dialog.each { |key,value| 
    next if value == nil || value.to_s.empty?
-   value = 'true' if value.to_s == 't'               %>
+   value = 'true'  if value.to_s == 't'               %>
+   value = 'false' if value.to_s == 'f'               %>
 <%= key.gsub(/^(.*::)?dialog_/,'') %>=<%= value.to_s %>
 <% } %>
 
